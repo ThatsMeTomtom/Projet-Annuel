@@ -38,9 +38,9 @@ services:
     ports:
       - "8080:80"
     environment:
-      - ROUNDCUBEMAIL_DEFAULT_HOST=ssl://dovecot
-      - ROUNDCUBEMAIL_DEFAULT_PORT=993
-      - ROUNDCUBEMAIL_SMTP_SERVER=tls://postfix
-      - ROUNDCUBEMAIL_SMTP_PORT=587
+      - ROUNDCUBEMAIL_DEFAULT_HOST=dovecot
+      - ROUNDCUBEMAIL_DEFAULT_PORT=143
+      - ROUNDCUBEMAIL_SMTP_SERVER=postfix
+      - ROUNDCUBEMAIL_SMTP_PORT=25
       - ROUNDCUBEMAIL_SKIN=elastic
       - ROUNDCUBEMAIL_DB_TYPE=sqlite
