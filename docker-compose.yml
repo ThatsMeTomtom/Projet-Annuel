@@ -18,6 +18,7 @@ services:
   postfix:
     build: ./postfix
     container_name: postfix
+    hostname: mail.securepulse.fr
     restart: unless-stopped
     depends_on:
       - dovecot
