@@ -16,8 +16,8 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 
 echo "==> Hashing password..."
 HASH=$(docker run --rm alpine sh -c \
-  "apk add -q dovecot && doveadm pw -s SHA512-CRYPT -p '$PASSWORD'")
-echo "$USERNAME:$HASH" > users
+  "apk add -q openssl && echo '$PASSWORD' | openssl passwd -6 -stdin")
+echo "$USERNAME:{SHA512-CRYPT}$HASH" > users
 
 echo "==> Building and starting Dovecot..."
 docker compose up -d --build
