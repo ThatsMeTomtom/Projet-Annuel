@@ -11,6 +11,4 @@ COPY conf/10-auth.conf conf/10-mail.conf conf/10-ssl.conf conf/10-master.conf /e
 
 EXPOSE 143 993 110 995 24
 
-VOLUME ["/var/mail", "/etc/dovecot/certs", "/etc/dovecot/users"]
-
 CMD ["dovecot", "-F"]

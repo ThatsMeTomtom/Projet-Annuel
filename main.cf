@@ -1,0 +1,36 @@
+# General
+myhostname = POSTFIX_HOSTNAME
+mydomain = POSTFIX_DOMAIN
+myorigin = $mydomain
+inet_interfaces = all
+inet_protocols = ipv4
+
+# Accept mail for this domain
+mydestination =
+virtual_mailbox_domains = POSTFIX_DOMAIN
+virtual_transport = lmtp:dovecot:24
+virtual_mailbox_maps = hash:/etc/postfix/virtual
+
+# Relay
+mynetworks = 127.0.0.0/8 172.16.0.0/12 192.168.0.0/16
+relayhost =
+
+# SASL auth via Dovecot (for outgoing mail submission)
+smtpd_sasl_type = dovecot
+smtpd_sasl_path = inet:dovecot:12345
+smtpd_sasl_auth_enable = yes
+smtpd_sasl_security_options = noanonymous
+smtpd_recipient_restrictions =
+    permit_sasl_authenticated,
+    permit_mynetworks,
+    reject_unauth_destination
+
+# TLS
+smtpd_tls_cert_file = /etc/postfix/certs/server.crt
+smtpd_tls_key_file = /etc/postfix/certs/server.key
+smtpd_tls_security_level = may
+smtp_tls_security_level = may
+
+# Disable local delivery (Dovecot handles it via LMTP)
+local_recipient_maps =
+local_transport = error:local mail delivery is disabled

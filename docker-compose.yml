@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   dovecot:
-    build: .
+    build: ./dovecot
     container_name: dovecot
     restart: unless-stopped
     ports:
@@ -10,8 +10,19 @@ services:
       - "993:993"
       - "110:110"
       - "995:995"
-      - "24:24"
     volumes:
       - ./mail:/var/mail
       - ./certs:/etc/dovecot/certs:ro
       - ./users:/etc/dovecot/users:ro
+
+  postfix:
+    build: ./postfix
+    container_name: postfix
+    restart: unless-stopped
+    depends_on:
+      - dovecot
+    ports:
+      - "25:25"
+      - "587:587"
+    volumes:
+      - ./certs:/etc/postfix/certs:ro
