@@ -1,6 +1,6 @@
 FROM alpine:3.19
 
-RUN apk add --no-cache postfix postfix-pcre cyrus-sasl cyrus-sasl-digestmd5 \
+RUN apk add --no-cache postfix postfix-pcre cyrus-sasl cyrus-sasl-digestmd5 busybox-extras \
     && mkdir -p /var/spool/postfix
 
 COPY conf/main.cf /etc/postfix/main.cf
@@ -9,4 +9,4 @@ COPY conf/virtual /etc/postfix/virtual
 
 EXPOSE 25 587
 
-CMD ["sh", "-c", "postmap /etc/postfix/virtual && postfix start-fg"]
+CMD ["sh", "-c", "syslogd && postmap /etc/postfix/virtual && postfix start && tail -f /var/log/mail.log"]

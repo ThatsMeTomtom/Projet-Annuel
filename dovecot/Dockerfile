@@ -1,6 +1,6 @@
 FROM alpine:3.19
 
-RUN apk add --no-cache dovecot dovecot-lmtpd dovecot-pop3d \
+RUN apk add --no-cache dovecot dovecot-lmtpd dovecot-pop3d dovecot-ldap \
     && mkdir -p /var/mail \
     && addgroup -g 5000 vmail \
     && adduser -D -u 5000 -G vmail -h /var/mail vmail \
