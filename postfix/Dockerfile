@@ -9,4 +9,4 @@ COPY conf/virtual /etc/postfix/virtual
 
 EXPOSE 25 587
 
-CMD ["sh", "-c", "syslogd && postmap /etc/postfix/virtual && postfix start && tail -f /var/log/mail.log"]
+CMD ["sh", "-c", "syslogd && mkdir -p /var/log && touch /var/log/mail.log && postmap /etc/postfix/virtual && postfix start && tail -f /var/log/mail.log"]

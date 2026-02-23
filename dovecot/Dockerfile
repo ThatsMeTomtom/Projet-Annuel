@@ -8,6 +8,7 @@ RUN apk add --no-cache dovecot dovecot-lmtpd dovecot-pop3d dovecot-ldap \
 
 COPY conf/dovecot.conf /etc/dovecot/dovecot.conf
 COPY conf/10-auth.conf conf/10-mail.conf conf/10-ssl.conf conf/10-master.conf /etc/dovecot/conf.d/
+COPY conf/dovecot-ldap.conf /etc/dovecot/dovecot-ldap.conf
 
 EXPOSE 143 993 110 995 24
 
