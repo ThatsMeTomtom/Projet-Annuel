@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  dovecot:
+    build: .
+    container_name: dovecot
+    restart: unless-stopped
+    ports:
+      - "143:143"
+      - "993:993"
+      - "110:110"
+      - "995:995"
+      - "24:24"
+    volumes:
+      - ./mail:/var/mail
+      - ./certs:/etc/dovecot/certs:ro
+      - ./users:/etc/dovecot/users:ro
