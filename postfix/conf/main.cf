@@ -1,13 +1,13 @@
 # General
-myhostname = POSTFIX_HOSTNAME
-mydomain = POSTFIX_DOMAIN
+myhostname = mail.securepulse.fr
+mydomain = securepulse.fr
 myorigin = $mydomain
 inet_interfaces = all
 inet_protocols = ipv4
 
 # Accept mail for this domain
 mydestination =
-virtual_mailbox_domains = POSTFIX_DOMAIN
+virtual_mailbox_domains = securepulse.fr
 virtual_transport = lmtp:dovecot:24
 virtual_mailbox_maps = hash:/etc/postfix/virtual
 

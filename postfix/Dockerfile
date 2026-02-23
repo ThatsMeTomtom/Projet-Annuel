@@ -1,6 +1,6 @@
 FROM alpine:3.19
 
-RUN apk add --no-cache postfix postfix-pcre cyrus-sasl cyrus-sasl-plain \
+RUN apk add --no-cache postfix postfix-pcre cyrus-sasl cyrus-sasl-digestmd5 \
     && mkdir -p /var/spool/postfix
 
 COPY conf/main.cf /etc/postfix/main.cf
